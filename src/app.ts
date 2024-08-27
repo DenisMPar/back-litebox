@@ -11,7 +11,5 @@ app.use(express.json({ limit: "4mb" }));
 app.use(cors());
 app.use("/api", api);
 
-initDatabase().then(() => {
-  syncDb();
-});
+initDatabase();
 export default app;

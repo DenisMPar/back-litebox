@@ -3,6 +3,7 @@ import { PostsControllers } from "../controllers/posts";
 import { PostValidate } from "../middleware/schema/posts";
 import { UUID } from "crypto";
 import { buildPaginationWithPages, PaginationQuery } from "../lib/pagination-builder";
+import { syncDb } from "../db/sync";
 
 const router = express.Router();
 const postsController = new PostsControllers();
@@ -55,5 +56,9 @@ router.post("/post/related", PostValidate.createPost, async (req: Request, res: 
     console.log(error);
     res.status(500).json({ message: "Error on creating post", error: error.message });
   }
+});
+router.get("/sync", async (req: Request, res: Response) => {
+  syncDb();
+  res.send("Database synced");
 });
 export default router;
