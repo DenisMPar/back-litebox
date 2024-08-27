@@ -57,8 +57,5 @@ router.post("/post/related", PostValidate.createPost, async (req: Request, res: 
     res.status(500).json({ message: "Error on creating post", error: error.message });
   }
 });
-router.get("/sync", async (req: Request, res: Response) => {
-  syncDb();
-  res.send("Database synced");
-});
+
 export default router;
